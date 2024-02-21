@@ -1,113 +1,291 @@
-import Image from "next/image";
+"use client"
+
+import React from "react"
+
+// ** Third Party
+import { BiCheckCircle } from "react-icons/bi"
+
+// ** Data
+import linkData from "@/data/link"
+import informasiData from "@/data/informasi"
+import petunjukData from "@/data/petunjuk"
+import statsData from "@/data/stats"
+import {
+  guruData,
+  guruGenderData,
+  guruPelatihanData,
+  pendidikanGuruData,
+  santriData,
+  statusGuruData
+} from "@/data/sekolah"
+
+// ** Custom Components
+import PieChart from "@/components/PieChart"
+import BarChart from "@/components/BarChart"
+import Footer from "@/components/Footer"
+import FloatButton from "@/components/FloatButton"
+import { useSidebar } from "@/context/SidebarContext"
+
+const guruChartData = {
+  labels: guruData.map((data) => data.name),
+  datasets: [
+    {
+      barPercentage: 0.5,
+      label: "Data Guru",
+      data: guruData.map((data) => data.value),
+      backgroundColor: "#89043D",
+      borderRadius: 6
+    }
+  ]
+}
+
+const pendidikanGuruChartData = {
+  labels: pendidikanGuruData.map((data) => data.name),
+  datasets: [
+    {
+      barPercentage: 0.5,
+      label: "Data Guru",
+      data: pendidikanGuruData.map((data) => data.value),
+      backgroundColor: "#00B295",
+      borderRadius: 6
+    }
+  ]
+}
+
+const pelatihanGuruChartData = {
+  labels: guruPelatihanData.map((data) => data.name),
+  datasets: [
+    {
+      barPercentage: 0.5,
+      label: "Data Guru",
+      data: guruPelatihanData.map((data) => data.value),
+      backgroundColor: "#A663CC",
+      borderRadius: 6
+    }
+  ]
+}
+
+const jenisKelaminChartData = {
+  labels: guruGenderData.map((data) => data.name),
+  datasets: [
+    {
+      barPercentage: 0.5,
+      label: "Data Guru",
+      data: guruGenderData.map((data) => data.value),
+      backgroundColor: "#ED6A5A",
+      borderRadius: 6
+    }
+  ]
+}
+
+const statusGuruChartData = {
+  labels: statusGuruData.map((data) => data.name),
+  datasets: [
+    {
+      label: "Data Guru",
+      data: statusGuruData.map((data) => data.value),
+      backgroundColor: "#809848",
+      borderRadius: 6
+    }
+  ]
+}
+
+const santriChartData = {
+  labels: santriData.map((data) => data.kecamatan),
+  datasets: [
+    {
+      label: "Laki-laki",
+      data: santriData.map((data) => data.male),
+      backgroundColor: "#ED6A5A",
+      borderRadius: 6
+    },
+    {
+      label: "Perempuan",
+      data: santriData.map((data) => data.female),
+      backgroundColor: "#00B295",
+      borderRadius: 6
+    }
+  ]
+}
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      {/* Start Hero Section */}
+      <section className="relative min-h-screen isolate mx-auto max-w-7xl px-6 pt-20 pb-16 lg:px-8 lg:pt-20 flex items-center gap-20 lg:gap-8 justify-between">
+        <svg
+          viewBox="0 0 1108 632"
+          aria-hidden="true"
+          className="absolute top-10 left-[calc(50%-4rem)] -z-10 w-[69.25rem] max-w-none transform-gpu blur-3xl sm:left-[calc(50%-18rem)] lg:left-48 lg:top-[calc(50%-10rem)] xl:left-[calc(50%-24rem)]"
+        >
+          <path
+            fill="url(#175c433f-44f6-4d59-93f0-c5c51ad5566d)"
+            fillOpacity=".2"
+            d="M235.233 402.609 57.541 321.573.83 631.05l234.404-228.441 320.018 145.945c-65.036-115.261-134.286-322.756 109.01-230.655C968.382 433.026 1031 651.247 1092.23 459.36c48.98-153.51-34.51-321.107-82.37-385.717L810.952 324.222 648.261.088 235.233 402.609Z"
+          ></path>
+          <defs>
+            <linearGradient
+              id="175c433f-44f6-4d59-93f0-c5c51ad5566d"
+              x1="1220.59"
+              x2="-85.053"
+              y1="432.766"
+              y2="638.714"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop stopColor="#4F46E5"></stop>
+              <stop offset="1" stopColor="#80CAFF"></stop>
+            </linearGradient>
+          </defs>
+        </svg>
+
+        <div className="w-full flex flex-col sm:flex-row items-center justify-center">
+          <div className="text-center max-w-4xl">
+            <h1 className="mt-10 text-2xl md:text-[2.5rem] leading-[1.3] font-bold text-primary">
+              LAPORAN LEMBAGA PENDIDIKAN AL QUR`AN BADAN KOORDINASI LEMBAGA
+              PENDIDIKAN AL QUR`AN (BADKO LPQ)
+              <p className="mt-2 text-secondary">KABUPATEN REMBANG</p>
+            </h1>
+            <p className="mt-6 text-lg leading-8">
+              SILAHKAN BACA DAN PAHAMI INFORMASI DAN PETUNJUK
+            </p>
+          </div>
+        </div>
+      </section>
+      {/* End Hero Section */}
+
+      <div className="mx-auto max-w-7xl lg:px-8 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
+          <div className="col-span-1 px-6">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl w-2/3 mb-4">
+              Informasi
+            </h2>
+            <ul>
+              {informasiData.map((data) => (
+                <li key={data.id} className="flex gap-2 w-full">
+                  <BiCheckCircle className="w-10" size={20} />
+                  <p className="w-full">{data.text}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="col-span-1 px-6">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl w-2/3 mb-4">
+              Petunjuk
+            </h2>
+            <ul>
+              {petunjukData.map((data) => (
+                <li key={data.id} className="flex gap-2 w-full">
+                  <BiCheckCircle className="w-10" size={20} />
+                  <p className="w-full">{data.text}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-32">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          {statsData.map((data) => (
+            <div key={data.id} className="stat bg-base-content rounded-md">
+              <div className="stat-figure text-neutral-content">
+                {data.icon}
+              </div>
+              <div className="stat-title text-neutral-content">
+                {data.title}
+              </div>
+              <div className="stat-value text-neutral-content">
+                {data.value}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
+      <section>
+        <div className="mx-auto max-w-2xl px-6 mb-14 text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Data Statistik
           </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
+          <p className="mt-4 text-lg leading-8 ">
+            Data berikut ini dihimpun dari masukan tiap-tiap sekolah yang ada di
+            kabupaten Rembang
           </p>
-        </a>
+        </div>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-32">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center justify-center">
+            <div className="w-full h-[400px] card bg-neutral-50">
+              <PieChart />
+            </div>
+            <div className="w-full h-[400px] card bg-neutral-50 md:col-span-2">
+              <BarChart
+                cardTitle="Data Guru per Kecamatan"
+                data={guruChartData}
+              />
+            </div>
+            <div className="w-full h-[400px] card bg-neutral-50">
+              <BarChart
+                cardTitle="Guru yang Sudah Melakukan Pelatihan"
+                data={pelatihanGuruChartData}
+              />
+            </div>
+            <div className="w-full h-[350px] card bg-neutral-50 md:col-span-2">
+              <BarChart
+                cardTitle="Data Pendidikan Terakhir Guru"
+                data={pendidikanGuruChartData}
+              />
+            </div>
+            <div className="w-full h-[350px] card bg-neutral-50">
+              <BarChart
+                cardTitle="Guru Berdasarkan Jenis Kelamin"
+                data={jenisKelaminChartData}
+              />
+            </div>
+            <div className="w-full h-[350px] card bg-neutral-50">
+              <BarChart
+                cardTitle="Jumlah Guru Berdasarkan Status"
+                data={statusGuruChartData}
+              />
+            </div>
+            <div className="w-full h-[400px] card bg-neutral-50 md:col-span-4">
+              <BarChart
+                cardTitle="Jumlah Santri per Kecamatan"
+                data={santriChartData}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
+      <section>
+        <div className="mx-auto max-w-2xl px-6 mb-14 text-center">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+            Link Penting
           </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
+          <p className="mt-4 text-lg leading-8">
+            Silakan gunakan daftar link berikut untuk melakukan aksi sesuai
+            dengan kebutuhan Anda
           </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  );
+        </div>
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 mb-32">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {linkData.map((data) => (
+              <div
+                key={data.id}
+                className="bg-white p-6 grid place-items-center rounded-2xl shadow-lg"
+              >
+                <button className="hover:text-gray-700 text-[3.5rem] mb-3">
+                  {data.icon}
+                </button>
+                <button className="hover:text-gray-700 text-lg leading-tight">
+                  {data.text}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  )
 }
